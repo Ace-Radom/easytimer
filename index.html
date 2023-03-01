@@ -6,4 +6,37 @@
         <link rel="shortcut icon" href="images/ico.png">
         <link rel="stylesheet" href="assets/main.css">
     </head>
+    <body>
+        <header>
+            <h1>Easy Timer</h1>
+            <b>powered by Ace_Radom</b>
+        </header>
+        <table>
+            <tr id="timer">
+                <td><span id="timer_main"><strong>00:00:00</strong></span></td>
+            </tr>
+            <tr id="controls">
+                <td>
+                    倒计时
+                    <input id="hour_input" type="text" value="00" style="width: 20px;">
+                    时
+                    <input id="min_input" type="text" value="00" style="width: 20px;">
+                    分
+                    <input id="sec_input" type="text" value="00" style="width: 20px;">
+                    秒
+                    &nbsp;
+                    <input id="set_button" type="button" value="设置时间" onclick="setTime()">
+                </td>
+            </tr>
+            <tr id="controls">
+                <td>
+                    <input id="start_button" type="button" value="开始" onclick="start()">
+                    <input id="pause_button" type="button" value="暂停" onclick="pause()">
+                    <input id="cancel_button" type="button" value="取消" onclick="cancel()">
+                </td>
+            </tr>
+        </table>
+
+        <script src="assets/main.js"></script>
+    </body>
 </html>
