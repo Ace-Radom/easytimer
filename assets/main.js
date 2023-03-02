@@ -15,17 +15,21 @@ window.onload = function(){
     sec_input.value = "00";
 }
 
+// region finished by y5nw
+
 function padZero(n) {
 	return n < 10 ? "0" + n : n;
 }
 
 function updateCounter() {
-    let h = Math.floor(counter/3600);
-    let m = Math.floor(counter/60)%60;
-    let s = Math.floor(counter)%60;
+    let h = Math.floor( counter / 3600 );
+    let m = Math.floor( counter / 60 ) % 60;
+    let s = Math.floor( counter ) % 60;
     // here can add sth: for example when there's only one min left, make the time red
     timer_main.innerHTML = `<strong>${padZero(h)}:${padZero(m)}:${padZero(s)}</strong>`
 }
+
+// region finished by y5nw
 
 function setTime(){
     start_button.disabled = false;
@@ -44,7 +48,7 @@ function setTime(){
     var hour_num = new Number( hour );
     var min_num = new Number( min );
     var sec_num = new Number( sec );
-    counter = hour_num*3600+min_num*60+sec_num;
+    counter = hour_num * 3600 + min_num * 60 + sec_num;
     updateCounter();
 
     window.clearTimeout( timer );
@@ -54,7 +58,7 @@ function start(){
     start_button.disabled = true;
     pause_button.disabled = false;
     set_button.disabled = true;
-    cancel_button.disabled = false;
+    reset_button.disabled = false;
 
     startTime = new Date().valueOf();
     // init start time
@@ -71,11 +75,11 @@ function pause(){
     window.clearTimeout( timer );
 }
 
-function cancel(){
+function reset(){
     start_button.disabled = false;
     pause_button.disabled = true;
     set_button.disabled = false;
-    cancel_button.disabled = true;
+    reset_button.disabled = true;
 
     setTime();
 }
@@ -89,7 +93,7 @@ function onTimer(){
         start_button.disabled = true;
         pause_button.disabled = true;
         set_button.disabled = false;
-        cancel_button.disabled = true;
+        reset_button.disabled = true;
         return;
     } // time's up
 
