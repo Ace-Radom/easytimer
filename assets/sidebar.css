@@ -1,6 +1,6 @@
 .header {
     display: block;
-    margin: 0 auto;
+    margin: 0;
     width: 100%;
     max-width: 100%;
     box-shadow: none;
@@ -11,16 +11,28 @@
 }
 
 .header, .phantom-header {
-    height: 60px !important;
+    height: 4em !important;
+}
+
+.header > * {
+    margin: 1.5em 0 auto 1.5em;
+    font-size-adjust: cap-height 1;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+#headerText {
+    margin-left: 1ex;
 }
 
 #sidebarMenu {
     height: 100%;
     position: fixed;
     left: 0;
-    width: 250px;
-    margin-top: 60px;
-    transform: translateX(-250px);
+    top: 4em;
+    margin: 0;
+    width: fit-content;
+    transform: translateX(-100%);
     transition: transform 250ms ease-in-out;
     background: #333333;
 }
@@ -53,7 +65,7 @@
     font-weight: bold;
     text-decoration: none;
     display: block;
-    padding: 20px;
+    padding: 1.5em;
     width: 100%;
 }
 #openSidebarMenu:checked ~ #sidebarMenu {
@@ -69,14 +81,12 @@
     transition: all 0.3s;
     box-sizing: border-box;
     cursor: pointer;
-    position: absolute;
     z-index: 99;
     height: 100%;
     width: 100%;
-    top: 22px;
-    left: 22px;
-    height: 22px;
-    width: 22px;
+    display: inline-block;
+    height: 1em;
+    width: 1em;
 }
 .spinner {
     transition: all 0.3s;
