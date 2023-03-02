@@ -4,54 +4,10 @@
         <meta charset="utf-8">
         <title>Easy Timer</title>
         <link rel="shortcut icon" href="images/ico.png">
-        <link rel="stylesheet" href="assets/main.css">
-        <link rel="stylesheet" href="assets/sidebar.css">
     </head>
-    <body>
-        <div class="header"></div>
-        <input type="checkbox" class="openSidebarMenu" id="openSidebarMenu">
-        <label for="openSidebarMenu" class="sidebarIconToggle">
-            <div class="spinner diagonal part-1"></div>
-            <div class="spinner horizontal"></div>
-            <div class="spinner diagonal part-2"></div>
-        </label>
-        <div id="sidebarMenu">
-            <ul class="sidebarMenuInner">
-                <li>Countdown Timer</li>
-                <li>Stopwatch</li>
-            </ul>
-        </div>
-        <br><br>
-        <header>
-            <h1>Easy Timer</h1>
-	    <b>powered by <a href="https://github.com/Ace-Radom">Ace-Radom</a></b>
-        </header>
-        <table>
-            <tr id="timer">
-                <td><span id="timer_main"><strong>&ndash;&ndash;:&ndash;&ndash;:&ndash;&ndash;</strong></span></td>
-            </tr>
-            <tr id="controls">
-                <td>
-                    Count down
-                    <input id="hour_input" type="text" value="00" style="width: 20px;">
-                    h
-                    <input id="min_input" type="text" value="00" style="width: 20px;">
-                    m
-                    <input id="sec_input" type="text" value="00" style="width: 20px;">
-                    s
-                    &nbsp;
-                    <input id="set_button" type="button" value="Set Time" onclick="setTime()">
-                </td>
-            </tr>
-            <tr id="controls">
-                <td>
-                    <input id="start_button" type="button" value="Start" onclick="start()">
-                    <input id="pause_button" type="button" value="Pause" onclick="pause()">
-                    <input id="reset_button" type="button" value="Reset" onclick="reset()">
-                </td>
-            </tr>
-        </table>
-
-        <script src="assets/main.js"></script>
-    </body>
+    <script>
+        window.onload = function(){
+            window.open( "html/countdown_timer.html" , "_self" );
+        };
+    </script>
 </html>
