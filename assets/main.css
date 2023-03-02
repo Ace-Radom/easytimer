@@ -8,6 +8,8 @@ header {
     text-align: center;
 }
 
+a { color: white; }
+
 h1 { font-size: 40px; }
 h2 { font-size: 35px; }
 h3 { font-size: 30px; }
