@@ -112,7 +112,7 @@ function onTimer(){
         start_button.disabled = true;
         pause_button.disabled = true;
         set_button.disabled = false;
-        reset_button.disabled = true;
+        reset_button.disabled = false;
         timer = window.setTimeout( "onTimer()" , 500 );
         return;
     } // time's up
