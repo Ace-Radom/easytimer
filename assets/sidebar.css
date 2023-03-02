@@ -35,9 +35,12 @@
     color: #fff;
     text-transform: uppercase;
     font-weight: bold;
-    padding: 20px;
-    cursor: pointer;
+    padding: 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+    width: 100%;
+}
+.sidebarMenuInner li:hover {
+    background-color: gray;
 }
 .sidebarMenuInner li span{
     display: block;
@@ -49,6 +52,9 @@
     text-transform: uppercase;
     font-weight: bold;
     text-decoration: none;
+    display: block;
+    padding: 20px;
+    width: 100%;
 }
 #openSidebarMenu:checked ~ #sidebarMenu {
     transform: translateX(0);
@@ -68,7 +74,7 @@
     height: 100%;
     width: 100%;
     top: 22px;
-    left: 15px;
+    left: 22px;
     height: 22px;
     width: 22px;
 }
