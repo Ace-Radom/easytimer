@@ -55,6 +55,11 @@ function setTime(){
 }
 
 function start(){
+    if ( timer_main.innerHTML == "<strong>00:00:00</strong>" )
+    {
+        return;
+    } // fix bug: when the time is set as 00:00:00 and start, NaN:NaN:NaN will be displayed
+
     start_button.disabled = true;
     pause_button.disabled = false;
     set_button.disabled = true;
