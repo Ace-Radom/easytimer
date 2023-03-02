@@ -1,11 +1,10 @@
 var timer = null;
 
+var duration;
 var counter;
 var startTime;
-var timer_temp;
 
 const normal_elapse = 1000;
-const finish_sign = "<strong>00:00:00</strong>";
 
 var next_elapse = normal_elapse;
 
@@ -14,6 +13,18 @@ window.onload = function(){
     hour_input.value = "00";
     min_input.value = "00";
     sec_input.value = "00";
+}
+
+function padZero(n) {
+	return n < 10 ? "0" + n : n;
+}
+
+function updateCounter() {
+    let h = Math.floor(counter/3600);
+    let m = Math.floor(counter/60)%60;
+    let s = Math.floor(counter)%60;
+    // here can add sth: for example when there's only one min left, make the time red
+    timer_main.innerHTML = `<strong>${padZero(h)}:${padZero(m)}:${padZero(s)}</strong>`
 }
 
 function setTime(){
@@ -33,16 +44,10 @@ function setTime(){
     var hour_num = new Number( hour );
     var min_num = new Number( min );
     var sec_num = new Number( sec );
-    var hour_str = hour_num < 10 ? ( "0" + hour_num ) : hour;
-    var min_str = min_num < 10 ? ( "0" + min_num ) : min;
-    var sec_str = sec_num < 10 ? ( "0" + sec_num ) : sec;
-    var time_output_init = hour_str + ":" + min_str + ":" + sec_str;
-    timer_temp = time_output_init;
-    // save this str to timer_temp (usually as "hh:mm:ss")
+    counter = hour_num*3600+min_num*60+sec_num;
+    updateCounter();
 
-    timer_main.innerHTML = "<strong>" + time_output_init + "</strong>";
     window.clearTimeout( timer );
-    window.clearInterval( timer );
 }
 
 function start(){
@@ -51,11 +56,11 @@ function start(){
     set_button.disabled = true;
     cancel_button.disabled = false;
 
-    counter = 0;
     startTime = new Date().valueOf();
     // init start time
 
-    timer = window.setInterval( "onTimer()" , next_elapse );
+    duration = counter;
+    timer = window.setTimeout( "onTimer()" , next_elapse );
 }
 
 function pause(){
@@ -72,15 +77,14 @@ function cancel(){
     set_button.disabled = false;
     cancel_button.disabled = true;
 
-    timer_main.innerHTML = finish_sign;
-    window.clearTimeout( timer );
-    window.clearInterval( timer );
+    setTime();
 }
 
 function onTimer(){
-    if ( timer_main.innerHTML == finish_sign )
+    counter--;
+    if ( counter < 0 )
     {
-        window.clearInterval( timer );
+        window.clearTimeout( timer );
         timer_main.innerHTML = "<strong>Time's up!</strong>";
         start_button.disabled = true;
         pause_button.disabled = true;
@@ -89,37 +93,11 @@ function onTimer(){
         return;
     } // time's up
 
-    var time_obj = new String( timer_temp ).split( ":" );
-    var h = new Number( time_obj[0] );
-    var m = new Number( time_obj[1] );
-    var s = new Number( time_obj[2] );
-    // get the time now
+    updateCounter();
 
-    s -= 1;
-    if ( s < 0 )
-    {
-        s = 59;
-        m -= 1;
-    } // renew min
-    if ( m < 0 )
-    {
-        m = 59;
-        h -= 1;
-    } // renew hour
+    window.clearTimeout( timer );
 
-    var hour_str = h < 10 ? ( "0" + h ) : h;
-    var min_str = m < 10 ? ( "0" + m ) : m;
-    var sec_str = s < 10 ? ( "0" + s ) : s;
-    var time_now = hour_str + ":" + min_str + ":" + sec_str;
-    timer_temp = time_now;
-    timer_main.innerHTML = "<strong>" + time_now + "</strong>";
-
-    // here can add sth: for example when there's only one min left, make the time red
-
-    window.clearInterval( timer );
-
-    counter++;
-    var counterSecs = counter * 1000;
+    var counterSecs = (duration-counter) * 1000;
     var elapseSecs = new Date().valueOf() - startTime;
     var diffSecs = counterSecs - elapseSecs;
     next_elapse = normal_elapse + diffSecs;
@@ -129,5 +107,5 @@ function onTimer(){
     }
     // calibration
 
-    timer = window.setInterval( "onTimer()" , next_elapse );
+    timer = window.setTimeout( "onTimer()" , next_elapse );
 }
