@@ -6,9 +6,12 @@
     box-shadow: none;
     background-color: #3C3C3C;
     position: fixed;
-    height: 60px!important;
     overflow: hidden;
     z-index: 10;
+}
+
+.header, .phantom-header {
+    height: 60px !important;
 }
 
 #sidebarMenu {
@@ -45,14 +48,13 @@
     color: #fff;
     text-transform: uppercase;
     font-weight: bold;
-    cursor: pointer;
     text-decoration: none;
 }
-input[type="checkbox"]:checked ~ #sidebarMenu {
+#openSidebarMenu:checked ~ #sidebarMenu {
     transform: translateX(0);
 }
 
-input[type=checkbox] {
+#openSidebarMenu {
     transition: all 0.3s;
     box-sizing: border-box;
     display: none;
