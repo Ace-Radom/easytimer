@@ -1,7 +1,12 @@
 var timer = null;
 
+/* Note on the counter variable:
+The counter variable counts downward from the time that is previously
+set. When below zero, it acts as a helper for flashing text instead of
+(sensibly) counting downward.
+*/
 var duration;
-var counter;
+var counter = 0;
 var startTime;
 
 const normal_elapse = 1000;
@@ -18,18 +23,28 @@ window.onload = function(){
 // region finished by y5nw
 
 function padZero(n) {
-	return n < 10 ? "0" + n : n;
+    return n < 10 ? "0" + n : n;
 }
 
 function updateCounter() {
-    let h = Math.floor( counter / 3600 );
-    let m = Math.floor( counter / 60 ) % 60;
-    let s = Math.floor( counter ) % 60;
+    let t = Math.max( counter, 0 );
+    let h = Math.floor( t / 3600 );
+    let m = Math.floor( t / 60 ) % 60;
+    let s = Math.floor( t ) % 60;
     // here can add sth: for example when there's only one min left, make the time red
     timer_main.innerHTML = `<strong>${padZero(h)}:${padZero(m)}:${padZero(s)}</strong>`
+    let color = "#a3dafd";
+    if ( duration != undefined ) { // color text (esp. zero) only if the timer was previous started
+        if ( counter < 0 && counter % 2 == 0 )
+        {
+            color = "red";
+        } else if ( counter < 60 )
+        {
+            color = "yellow";
+        }
+    }
+    timer_main.style.color = color;
 }
-
-// region finished by y5nw
 
 function setTime(){
     start_button.disabled = false;
@@ -49,17 +64,13 @@ function setTime(){
     var min_num = new Number( min );
     var sec_num = new Number( sec );
     counter = hour_num * 3600 + min_num * 60 + sec_num;
+    duration = undefined;
     updateCounter();
 
     window.clearTimeout( timer );
 }
 
 function start(){
-    if ( timer_main.innerHTML == "<strong>00:00:00</strong>" )
-    {
-        return;
-    } // fix bug: when the time is set as 00:00:00 and start, NaN:NaN:NaN will be displayed
-
     start_button.disabled = true;
     pause_button.disabled = false;
     set_button.disabled = true;
@@ -68,6 +79,9 @@ function start(){
     startTime = new Date().valueOf();
     // init start time
 
+    if (counter < 0) {
+        counter = 0;
+    }
     duration = counter;
     timer = window.setTimeout( "onTimer()" , next_elapse );
 }
@@ -91,20 +105,17 @@ function reset(){
 
 function onTimer(){
     counter--;
-    if ( counter < 0 )
+    updateCounter();
+    window.clearTimeout( timer );
+    if ( counter <= 0 )
     {
-        window.clearTimeout( timer );
-        timer_main.innerHTML = "<strong>Time's up!</strong>";
         start_button.disabled = true;
         pause_button.disabled = true;
         set_button.disabled = false;
         reset_button.disabled = true;
+        timer = window.setTimeout( "onTimer()" , 500 );
         return;
     } // time's up
-
-    updateCounter();
-
-    window.clearTimeout( timer );
 
     var counterSecs = (duration-counter) * 1000;
     var elapseSecs = new Date().valueOf() - startTime;
@@ -118,3 +129,7 @@ function onTimer(){
 
     timer = window.setTimeout( "onTimer()" , next_elapse );
 }
+
+updateCounter();
+
+// vim: expandtab tabstop=4 shiftwidth=4
