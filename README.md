@@ -2,7 +2,7 @@
 
 easytimer is a web-based timer without ads
 
-![](https://img.shields.io/badge/Version-v1.3-blue)
+![](https://img.shields.io/github/v/release/Ace-Radom/easytimer?display_name=tag&include_prereleases)
 ![](https://img.shields.io/github/languages/code-size/Ace-Radom/easytimer)
 ![](https://img.shields.io/github/license/Ace-Radom/easytimer)
 
