@@ -76,8 +76,6 @@ function onTimer(){
     }
     // calibration
 
-    console.log( next_elapse );
-
     timer = window.setTimeout( "onTimer()" , next_elapse );
 }
 
