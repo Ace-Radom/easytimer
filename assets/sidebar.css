@@ -11,11 +11,12 @@
 }
 
 .header, .phantom-header {
-    height: 4em !important;
+    height: 3em !important;
 }
 
 .header > * {
-    margin: 1.5em 0 auto 1.5em;
+    margin: 0;
+    margin-top: 1em;
     font-size-adjust: cap-height 1;
     text-transform: uppercase;
     font-weight: bold;
@@ -29,7 +30,7 @@
     height: 100%;
     position: fixed;
     left: 0;
-    top: 4em;
+    top: 3em;
     margin: 0;
     width: fit-content;
     transform: translateX(-100%);
@@ -65,7 +66,7 @@
     font-weight: bold;
     text-decoration: none;
     display: block;
-    padding: 1.5em;
+    padding: 1em;
     width: 100%;
 }
 #openSidebarMenu:checked ~ #sidebarMenu {
@@ -87,6 +88,7 @@
     display: inline-block;
     height: 1em;
     width: 1em;
+    margin-left: 1em;
 }
 .spinner {
     transition: all 0.3s;

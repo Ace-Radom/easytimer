@@ -27,7 +27,7 @@
         })),
     ]);
     header.insertAdjacentElement("afterend", createElement("div", {class: "phantom-header"}));
-    document.getElementById("headerText").append(" by ", createElement("a", {href: "https://github.com/Ace-Radom"}, "Ace-Radom"));
+    header.append(createElement("span", {id: "headerText"}, ["Easy Timer by ", createElement("a", {href: "https://github.com/Ace-Radom"}, "Ace-Radom")]));
 
     // Append entries to the sidebar
     document.getElementById("sidebarMenu").append(createElement("ul", {
