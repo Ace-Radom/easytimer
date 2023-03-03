@@ -131,5 +131,3 @@ function onTimer(){
 }
 
 updateCounter();
-
-// vim: expandtab tabstop=4 shiftwidth=4

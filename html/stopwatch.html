@@ -8,23 +8,10 @@
         <link rel="stylesheet" href="../assets/sidebar.css">
     </head>
     <body>
-        <div class="header"></div>
-        <input type="checkbox" class="openSidebarMenu" id="openSidebarMenu">
-        <label for="openSidebarMenu" class="sidebarIconToggle">
-            <div class="spinner diagonal part-1"></div>
-            <div class="spinner horizontal"></div>
-            <div class="spinner diagonal part-2"></div>
-        </label>
-        <div id="sidebarMenu">
-            <ul class="sidebarMenuInner">
-                <li><a href="countdown_timer.html">Countdown Timer</a></li>
-            </ul>
+        <div class="header">
+            <div id="sidebarMenu"></div>
+            <span id="headerText">Stopwatch</span>
         </div>
-        <br><br>
-        <header>
-            <h1>Easy Timer - Stopwatch</h1>
-	        <b>powered by <a href="https://github.com/Ace-Radom">Ace-Radom</a></b>
-        </header>
         <table>
             <tr id="timer">
                 <td><span id="stopwatch_main"><strong>&ndash;&ndash;:&ndash;&ndash;:&ndash;&ndash;</strong></span></td>
@@ -41,5 +28,6 @@
         </table>
 
         <script src="../assets/stopwatch.js"></script>
+        <script src="../assets/sidebar.js"></script>
     </body>
 </html>
