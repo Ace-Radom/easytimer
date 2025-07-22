@@ -100,6 +100,10 @@ function reset(){
     set_button.disabled = false;
     reset_button.disabled = true;
 
+    hour_input.value = "00";
+    min_input.value = "00";
+    sec_input.value = "00";
+
     setTime();
 }
 
